@@ -1,0 +1,81 @@
+{
+  "name": "ableton",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ableton/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/ableton",
+        "index": "apps/ableton/src/index.html",
+        "baseHref": "/",
+        "main": "apps/ableton/src/main.tsx",
+        "polyfills": "apps/ableton/src/polyfills.ts",
+        "tsConfig": "apps/ableton/tsconfig.app.json",
+        "assets": ["apps/ableton/src/favicon.ico", "apps/ableton/src/assets"],
+        "styles": ["apps/ableton/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ableton/src/environments/environment.ts",
+              "with": "apps/ableton/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ableton:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ableton:build:development"
+        },
+        "production": {
+          "buildTarget": "ableton:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ableton/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ableton"],
+      "options": {
+        "jestConfig": "apps/ableton/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
