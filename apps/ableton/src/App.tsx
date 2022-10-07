@@ -1,11 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+import 'boxicons';
+import { BiAbacus } from 'react-icons/bi';
 
 export function App() {
   return (
     <>
-      <NxWelcome title="ableton" />
+      <i className="bx bxs-right-arrow-square"></i>
+      <i className="bx bxs-hot bx-border-circle"></i>
       <div />
     </>
   );
